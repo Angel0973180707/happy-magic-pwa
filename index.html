@@ -1,152 +1,49 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#FF9F43" />
-  <meta name="description" content="幸福魔法師｜親子同樂：少說教，多互動。每天3分鐘，把貼心與幽默變成幸福回路。" />
-  <title>幸福魔法師</title>
-
-  <link rel="manifest" href="./manifest.json" />
-  <link rel="icon" href="./icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FF8A00">
+<title>幸福魔法師</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <img class="brand__icon" src="./icons/icon-192.png" alt="icon" />
-      <div class="brand__text">
-        <div class="brand__title">幸福魔法師</div>
-        <div class="brand__subtitle">親子同樂｜每天3分鐘｜少說教、多互動</div>
-      </div>
-    </div>
-  </header>
+<header>幸福魔法師</header>
 
-  <main class="container">
-    <!-- Quick actions -->
-    <section class="card quick">
-      <button class="chip" id="btn-mission">🎯 今日任務</button>
-      <button class="chip" id="btn-dice">🎲 抽一張</button>
-      <button class="chip" id="btn-wow">✨ 放煙火</button>
-    </section>
+<main>
+<section class="step">
+<h2>① 抽一個好行動</h2>
+<button id="draw">🎲 抽一張</button>
+<div id="card"></div>
+</section>
 
-    <!-- Mission card -->
-    <section class="card">
-      <div class="row-head">
-        <h2>今日任務</h2>
-        <button class="icon-btn" id="btn-new-mission" aria-label="new mission">↻</button>
-      </div>
+<section class="step">
+<h2>② 誰做得好？</h2>
+<button id="childGood">孩子做得好 ➜ 家長 +1</button>
+<button id="parentGood">家長做得好 ➜ 孩子 +1</button>
+</section>
 
-      <div class="mission" id="mission-text"></div>
+<section class="step score">
+<div>👨 家長：<span id="p">0</span></div>
+<div>🧒 孩子：<span id="c">0</span></div>
+</section>
 
-      <div class="two">
-        <button class="btn" id="done-mission">我完成了 ✅</button>
-        <button class="btn ghost" id="skip-mission">跳過（不勉強）</button>
-      </div>
+<section class="step">
+<h2>③ 今天結束</h2>
+<button id="reset">🧹 明天再來</button>
+</section>
 
-      <div class="mini" id="mission-hint"></div>
-    </section>
+<section class="links">
+<a href="https://forms.gle/vYMsw6bgiJYn32Gk9" target="_blank">📝 回饋</a>
+<a href="https://angel0973180707.github.io/angel-happy-paw/" target="_blank">🏠 概念館</a>
+<a href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7" target="_blank">▶️ 頻道</a>
+</section>
+</main>
 
-    <!-- Magic cards -->
-    <section class="grid">
-      <section class="card">
-        <div class="row-head">
-          <h2>貼心魔法</h2>
-          <button class="icon-btn" id="btn-attraction" aria-label="pick">🎴</button>
-        </div>
-        <div class="big-quote" id="quote-attraction"></div>
-        <div class="two">
-          <button class="btn soft" id="copy-attraction">一鍵複製</button>
-          <button class="btn soft" id="parent-plus-from-child">孩子做得好＋1（家長）</button>
-        </div>
-      </section>
+<div id="toast"></div>
 
-      <section class="card">
-        <div class="row-head">
-          <h2>小仙女魔法</h2>
-          <button class="icon-btn" id="btn-harmony" aria-label="pick">🪄</button>
-        </div>
-        <div class="big-quote" id="quote-harmony"></div>
-        <div class="two">
-          <button class="btn soft" id="copy-harmony">一鍵複製</button>
-          <button class="btn soft" id="child-plus-from-parent">家長做得好＋1（孩子）</button>
-        </div>
-      </section>
-    </section>
-
-    <!-- Score -->
-    <section class="card">
-      <div class="row-head">
-        <h2>互相得分</h2>
-        <button class="icon-btn" id="reset-today" aria-label="reset">🧹</button>
-      </div>
-
-      <div class="score-wrap">
-        <div class="score-card">
-          <div class="score-title">家長</div>
-          <div class="score-num" id="score-parent">0</div>
-          <button class="btn" id="add-parent">＋1（孩子好表現）</button>
-        </div>
-
-        <div class="score-card">
-          <div class="score-title">孩子</div>
-          <div class="score-num" id="score-child">0</div>
-          <button class="btn" id="add-child">＋1（家長好表現）</button>
-        </div>
-      </div>
-
-      <div class="two">
-        <button class="btn ghost" id="copy-summary">複製今日戰報</button>
-        <button class="btn ghost" id="share-card">生成一張分享卡</button>
-      </div>
-
-      <div class="mini" id="summary"></div>
-    </section>
-
-    <!-- Share card modal -->
-    <div class="modal" id="modal" aria-hidden="true">
-      <div class="modal__panel">
-        <div class="row-head">
-          <h3>今日分享卡</h3>
-          <button class="icon-btn" id="close-modal" aria-label="close">✕</button>
-        </div>
-        <div class="share-card" id="share-preview"></div>
-        <div class="two">
-          <button class="btn" id="copy-share">複製文字</button>
-          <button class="btn ghost" id="close-modal-2">關閉</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Links -->
-    <section class="card">
-      <h2>三個入口</h2>
-      <div class="link-list">
-        <a class="link-btn" target="_blank" rel="noopener"
-           href="https://forms.gle/vYMsw6bgiJYn32Gk9">📝 回饋表單</a>
-        <a class="link-btn warm" target="_blank" rel="noopener"
-           href="https://angel0973180707.github.io/angel-happy-paw/">🏠 回概念館</a>
-        <a class="link-btn pink" target="_blank" rel="noopener"
-           href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7">▶️ 天使笑長頻道</a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <span class="mini">任何時候停下來，都可以。只要舒服，就很好。</span>
-    </footer>
-  </main>
-
-  <canvas id="fx" class="fx" aria-hidden="true"></canvas>
-
-  <script src="./app.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(() => {});
-      });
-    }
-  </script>
+<script src="app.js"></script>
 </body>
 </html>
