@@ -3,8 +3,8 @@
   "short_name": "幸福魔法師",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#FFF0C2",
   "theme_color": "#FF7A00",
+  "background_color": "#FFF3E0",
   "icons": [
     {
       "src": "icons/icon-192.png",
