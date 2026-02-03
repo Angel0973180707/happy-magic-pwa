@@ -2,86 +2,426 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#FF7A00">
 <title>幸福魔法師</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
-:root{--o:#FF7A00;--b:#4DB6FF;--p:#FF5FA2;--g:#34D399}
-body{margin:0;font-family:system-ui;background:#FFF3E0}
-header{background:var(--o);color:#fff;text-align:center;padding:16px;font-weight:900}
-.card{background:#fff;margin:12px;border-radius:18px;padding:14px;box-shadow:0 8px 18px rgba(0,0,0,.15)}
-button{width:100%;padding:16px;border-radius:16px;border:0;font-weight:900;font-size:16px;margin-top:10px}
-.orange{background:var(--o);color:#fff}
-.blue{background:var(--b);color:#fff}
-.green{background:var(--g);color:#fff}
-.pink{background:var(--p);color:#fff}
-.box{background:#FFE0B2;padding:12px;border-radius:14px;margin-top:10px;font-weight:900}
-.row{display:flex;gap:10px}
-.row button{flex:1}
+:root{
+  --o:#FF7A00;
+  --y:#FFD54F;
+  --p:#FF5FA2;
+  --b:#4DB6FF;
+  --g:#34D399;
+  --ink:#3A1C00;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif;
+  background: radial-gradient(1200px 700px at 10% 10%, #FFF0C2 0%, #FFE9D6 35%, #FFD6E7 65%, #FFB36C 100%);
+  color:var(--ink);
+}
+header{
+  position:sticky; top:0; z-index:5;
+  padding:16px 14px;
+  text-align:center;
+  font-weight:1000;
+  font-size:20px;
+  background: linear-gradient(90deg, var(--o), #FF9F1C, var(--p));
+  color:#fff;
+  box-shadow: 0 10px 18px rgba(0,0,0,.18);
+}
+main{padding:14px; padding-bottom:120px}
+.card{
+  background:rgba(255,255,255,.92);
+  border-radius:22px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+  border: 2px solid rgba(255,255,255,.55);
+  backdrop-filter: blur(6px);
+}
+h2{margin:0 0 10px; font-size:16px}
+.small{font-size:13px; opacity:.9; margin-top:6px; line-height:1.5}
+.kv{
+  display:flex; justify-content:space-around; gap:10px;
+  font-weight:1000; font-size:18px;
+}
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#FFF3E0;
+  font-weight:1000;
+}
+.row{display:flex; gap:10px; align-items:stretch}
+.row > *{flex:1}
+.btn{
+  width:100%;
+  padding:16px 14px;
+  border:0;
+  border-radius:16px;
+  font-weight:1000;
+  font-size:16px;
+  color:#fff;
+  cursor:pointer;
+  box-shadow: 0 10px 18px rgba(0,0,0,.12);
+}
+.btn:active{transform:scale(.98)}
+.btn.o{background:linear-gradient(180deg,#FF8A2B,var(--o))}
+.btn.b{background:linear-gradient(180deg,#6EC6FF,var(--b))}
+.btn.p{background:linear-gradient(180deg,#FF86C8,var(--p))}
+.btn.g{background:linear-gradient(180deg,#6EE7B7,var(--g))}
+.pill{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:2px dashed rgba(255,122,0,.55);
+  font-weight:900;
+  background:#fffaf0;
+}
+.box{
+  margin-top:10px;
+  background:#FFF3E0;
+  padding:12px;
+  border-radius:14px;
+  font-weight:1000;
+  line-height:1.45;
+}
+.tabs{display:flex; gap:10px}
+.tab{
+  flex:1;
+  padding:12px;
+  border-radius:14px;
+  border:0;
+  font-weight:1000;
+  background:#fff;
+  color:var(--o);
+  cursor:pointer;
+}
+.tab.active{
+  background: linear-gradient(90deg,var(--p),#FFB36C);
+  color:#fff;
+}
+.list{margin-top:10px}
+.item{
+  display:flex; gap:8px; align-items:center;
+  background:#FFF3E0;
+  padding:10px 10px;
+  border-radius:14px;
+  margin-bottom:8px;
+}
+.item .t{flex:1; font-weight:900}
+.item button{
+  border:0;
+  background:var(--ink);
+  color:#fff;
+  font-weight:1000;
+  border-radius:12px;
+  padding:8px 10px;
+  cursor:pointer;
+}
+.links a{
+  display:block;
+  text-decoration:none;
+  text-align:center;
+  padding:14px;
+  border-radius:16px;
+  background: linear-gradient(180deg, var(--y), #FFE9A6);
+  font-weight:1000;
+  color:var(--ink);
+  margin-top:10px;
+}
+.footerBar{
+  position:fixed; left:0; right:0; bottom:0;
+  padding:10px 12px;
+  background: rgba(255,255,255,.9);
+  border-top: 1px solid rgba(0,0,0,.08);
+  backdrop-filter: blur(8px);
+  display:flex; gap:10px;
+}
+.footerBar button{
+  flex:1; padding:12px;
+  border-radius:14px; border:0;
+  font-weight:1000; cursor:pointer;
+  background:#FFF3E0; color:var(--ink);
+}
+#toast{
+  position:fixed;
+  bottom:86px; left:50%;
+  transform:translateX(-50%);
+  background:var(--ink);
+  color:#fff;
+  padding:12px 16px;
+  border-radius:999px;
+  font-weight:1000;
+  display:none;
+  max-width: calc(100vw - 32px);
+  text-align:center;
+}
 </style>
 </head>
 <body>
 <header>幸福魔法師</header>
 
-<div class="card">
-<b>點數</b>
-<div>大人：<span id="scoreA">0</span> ｜ 寶貝：<span id="scoreB">0</span></div>
-</div>
+<main>
+  <section class="card">
+    <h2>模式</h2>
+    <div class="tabs">
+      <button id="modeParent" class="tab active">👨‍👩‍👧 親子</button>
+      <button id="modeSibling" class="tab">👧🧒 兄弟姊妹</button>
+    </div>
+    <div class="small">不用講道理：按一下，就開始玩。</div>
+  </section>
 
-<div class="card">
-<b>🪄 幸福魔法師</b>
-<div class="row">
-<button id="drawB" class="orange">抽給寶貝</button>
-<button id="drawA" class="blue">抽給大人</button>
-</div>
-<div id="magicBox" class="box">按一顆試試看</div>
-<div class="row">
-<button id="bDone" class="green">寶貝完成 ➜ 大人 +1</button>
-<button id="aDone" class="pink">大人完成 ➜ 寶貝 +1</button>
-</div>
-</div>
+  <section class="card">
+    <h2>⭐ 點數</h2>
+    <div class="kv">
+      <div><span id="aName" class="badge">大人</span>：<span id="aScore">0</span></div>
+      <div><span id="bName" class="badge">寶貝</span>：<span id="bScore">0</span></div>
+    </div>
+  </section>
 
-<div class="card">
-<b>🧲 幸福貼心磁鐵</b>
-<button id="shareB" class="orange">寶貝分享 ➜ 大人 +1</button>
-<button id="shareA" class="blue">大人分享 ➜ 寶貝 +1</button>
-<div id="shareBox" class="box">今天快樂一件就好</div>
+  <section class="card">
+    <h2>🪄 幸福魔法師</h2>
+    <div class="row">
+      <button id="drawForB" class="btn o">抽給 <span id="bName2">寶貝</span></button>
+      <button id="drawForA" class="btn b">抽給 <span id="aName2">大人</span></button>
+    </div>
+    <div id="magicResult" class="box">點一顆抽籤：抽到的是「讓對方自動完成」的事。</div>
+
+    <div class="row" style="margin-top:10px">
+      <button id="bDid" class="btn g"><span id="bName3">寶貝</span>自動完成 ➜ <span id="aName3">大人</span> +1</button>
+      <button id="aDid" class="btn p"><span id="aName4">大人</span>自動完成 ➜ <span id="bName4">寶貝</span> +1</button>
+    </div>
+    <div class="small">抽到不想做？沒關係，笑一笑再抽一次。</div>
+  </section>
+
+  <section class="card">
+    <h2>🧲 幸福貼心磁鐵</h2>
+    <input id="shareInput" class="pill" placeholder="（可選）寫一句：今天把快樂吸過來的一件事" />
+    <div class="row" style="margin-top:10px">
+      <button id="shareB" class="btn o"><span id="bName5">寶貝</span>分享 ➜ <span id="aName5">大人</span> +1</button>
+      <button id="shareA" class="btn b"><span id="aName6">大人</span>分享 ➜ <span id="bName6">寶貝</span> +1</button>
+    </div>
+    <div id="lastShare" class="box">親子互相分享一件就好：一件一點。</div>
+  </section>
+
+  <section class="card">
+    <h2>📋 願望池（分開、一起討論）</h2>
+    <div class="small">
+      <b><span id="aName7">大人</span>願望池</b>：希望 <span id="bName7">寶貝</span>「自動」做到<br>
+      <b><span id="bName8">寶貝</span>願望池</b>：希望 <span id="aName8">大人</span>「自動」做到
+    </div>
+
+    <input id="wishInput" class="pill" placeholder="輸入一個『自動』願望（例如：自動吃青菜 / 溫柔說話）" />
+    <div class="row" style="margin-top:10px">
+      <button id="addToA" class="btn o">加入 <span id="aName9">大人</span>願望池</button>
+      <button id="addToB" class="btn b">加入 <span id="bName9">寶貝</span>願望池</button>
+    </div>
+
+    <div class="row" style="margin-top:12px">
+      <div>
+        <div class="badge">🧺 <span id="aName10">大人</span>願望池</div>
+        <div id="listA" class="list"></div>
+      </div>
+      <div>
+        <div class="badge">🎈 <span id="bName10">寶貝</span>願望池</div>
+        <div id="listB" class="list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card links">
+    <a href="https://forms.gle/vYMsw6bgiJYn32Gk9" target="_blank" rel="noopener">📝 回饋表單</a>
+    <a href="https://angel0973180707.github.io/angel-happy-paw/" target="_blank" rel="noopener">🏠 一鍵回概念館</a>
+    <a href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7" target="_blank" rel="noopener">▶️ 天使笑長頻道</a>
+  </section>
+</main>
+
+<div id="toast"></div>
+
+<div class="footerBar">
+  <button id="resetToday">重設點數</button>
+  <button id="clearWishes">清空願望池</button>
 </div>
 
 <script>
-console.log("JS loaded");
+'use strict';
+(function(){
+  const $ = (id) => document.getElementById(id);
 
-const A = ["自動吃青菜","自動收玩具","自動講笑話"];
-const B = ["講話溫柔","給我抱抱","講睡前故事"];
+  const DEFAULT_WISHES_A = ["自動吃一口青菜","自動收一樣東西回原位","自動分享一件今天的心事","自動講一個笑話/小故事","自動說一句甜心話"];
+  const DEFAULT_WISHES_B = ["自動講話溫柔一點","自動聽我說完","自動給我一個抱抱","自動講一個睡前故事","自動陪我笑一下"];
 
-let scoreA=0, scoreB=0;
+  const KEY = "happyMagic_v7";
 
-function $(id){return document.getElementById(id)}
+  let s;
+  try{
+    s = JSON.parse(localStorage.getItem(KEY)) || {mode:"parent",scoreA:0,scoreB:0,wishesA:[],wishesB:[],lastMagic:"",lastShare:""};
+  }catch(e){
+    s = {mode:"parent",scoreA:0,scoreB:0,wishesA:[],wishesB:[],lastMagic:"",lastShare:""};
+  }
+  function save(){ localStorage.setItem(KEY, JSON.stringify(s)); }
 
-$("drawB").onclick=()=>{
- const t=A[Math.floor(Math.random()*A.length)];
- $("magicBox").innerText="給寶貝："+t;
-}
-$("drawA").onclick=()=>{
- const t=B[Math.floor(Math.random()*B.length)];
- $("magicBox").innerText="給大人："+t;
-}
-$("bDone").onclick=()=>{
- scoreA++; $("scoreA").innerText=scoreA;
-}
-$("aDone").onclick=()=>{
- scoreB++; $("scoreB").innerText=scoreB;
-}
-$("shareB").onclick=()=>{
- scoreA++; $("scoreA").innerText=scoreA;
- $("shareBox").innerText="✨ 寶貝分享完成";
-}
-$("shareA").onclick=()=>{
- scoreB++; $("scoreB").innerText=scoreB;
- $("shareBox").innerText="✨ 大人分享完成";
-}
+  function toast(msg){
+    const t = $("toast");
+    t.textContent = msg;
+    t.style.display = "block";
+    clearTimeout(toast._tm);
+    toast._tm = setTimeout(()=> t.style.display="none", 1300);
+  }
+
+  function names(){ return s.mode==="sibling" ? {A:"哥哥",B:"妹妹"} : {A:"大人",B:"寶貝"}; }
+  function poolA(){ return (s.wishesA && s.wishesA.length) ? s.wishesA : DEFAULT_WISHES_A; }
+  function poolB(){ return (s.wishesB && s.wishesB.length) ? s.wishesB : DEFAULT_WISHES_B; }
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function setLabels(){
+    const n = names();
+    const pairs = [
+      ["aName",n.A],["bName",n.B],
+      ["aName2",n.A],["bName2",n.B],
+      ["aName3",n.A],["bName3",n.B],
+      ["aName4",n.A],["bName4",n.B],
+      ["aName5",n.A],["bName5",n.B],
+      ["aName6",n.A],["bName6",n.B],
+      ["aName7",n.A],["bName7",n.B],
+      ["aName8",n.A],["bName8",n.B],
+      ["aName9",n.A],["bName9",n.B],
+      ["aName10",n.A],["bName10",n.B],
+    ];
+    pairs.forEach(([id,val])=>{ const el=$(id); if(el) el.textContent = val; });
+
+    $("aScore").textContent = String(s.scoreA||0);
+    $("bScore").textContent = String(s.scoreB||0);
+    $("magicResult").textContent = s.lastMagic || "點一顆抽籤：抽到的是「讓對方自動完成」的事。";
+    $("lastShare").textContent = s.lastShare || "親子互相分享一件就好：一件一點。";
+
+    $("modeParent").classList.toggle("active", s.mode==="parent");
+    $("modeSibling").classList.toggle("active", s.mode==="sibling");
+  }
+
+  function renderLists(){
+    const listA = $("listA");
+    const listB = $("listB");
+
+    const showA = (s.wishesA && s.wishesA.length) ? s.wishesA : DEFAULT_WISHES_A;
+    const showB = (s.wishesB && s.wishesB.length) ? s.wishesB : DEFAULT_WISHES_B;
+
+    listA.innerHTML = showA.map((w, idx)=>{
+      const deletable = (s.wishesA && s.wishesA.length) ? idx < s.wishesA.length : false;
+      return `<div class="item"><div class="t">${w}</div>${deletable?`<button data-del="A" data-i="${idx}">刪</button>`:""}</div>`;
+    }).join("");
+
+    listB.innerHTML = showB.map((w, idx)=>{
+      const deletable = (s.wishesB && s.wishesB.length) ? idx < s.wishesB.length : false;
+      return `<div class="item"><div class="t">${w}</div>${deletable?`<button data-del="B" data-i="${idx}">刪</button>`:""}</div>`;
+    }).join("");
+  }
+
+  function bindDelete(){
+    $("listA").onclick = (e)=>{
+      const btn = e.target.closest("button[data-del]");
+      if(!btn) return;
+      const i = Number(btn.getAttribute("data-i"));
+      s.wishesA.splice(i,1);
+      save(); render(); toast("已刪除（大人願望池）");
+    };
+    $("listB").onclick = (e)=>{
+      const btn = e.target.closest("button[data-del]");
+      if(!btn) return;
+      const i = Number(btn.getAttribute("data-i"));
+      s.wishesB.splice(i,1);
+      save(); render(); toast("已刪除（寶貝願望池）");
+    };
+  }
+
+  function render(){ setLabels(); renderLists(); }
+
+  $("modeParent").onclick = ()=>{ s.mode="parent"; save(); render(); toast("切到親子模式"); };
+  $("modeSibling").onclick = ()=>{ s.mode="sibling"; save(); render(); toast("切到兄弟姊妹模式"); };
+
+  $("drawForB").onclick = ()=>{
+    const n = names();
+    s.lastMagic = `給${n.B}：${pick(poolA())}`;
+    save(); render(); toast("抽好了 ✨");
+  };
+  $("drawForA").onclick = ()=>{
+    const n = names();
+    s.lastMagic = `給${n.A}：${pick(poolB())}`;
+    save(); render(); toast("抽好了 ✨");
+  };
+
+  $("bDid").onclick = ()=>{
+    const n = names();
+    s.scoreA = (s.scoreA||0) + 1;
+    save(); render(); toast(`${n.A} +1`);
+  };
+  $("aDid").onclick = ()=>{
+    const n = names();
+    s.scoreB = (s.scoreB||0) + 1;
+    save(); render(); toast(`${n.B} +1`);
+  };
+
+  $("shareB").onclick = ()=>{
+    const n = names();
+    const note = $("shareInput").value.trim();
+    s.lastShare = note ? `✨ ${n.B}分享：${note}` : `✨ ${n.B}分享了一件快樂`;
+    $("shareInput").value = "";
+    s.scoreA = (s.scoreA||0) + 1;
+    save(); render(); toast(`${n.A} +1`);
+  };
+  $("shareA").onclick = ()=>{
+    const n = names();
+    const note = $("shareInput").value.trim();
+    s.lastShare = note ? `✨ ${n.A}分享：${note}` : `✨ ${n.A}分享了一件快樂`;
+    $("shareInput").value = "";
+    s.scoreB = (s.scoreB||0) + 1;
+    save(); render(); toast(`${n.B} +1`);
+  };
+
+  function addWish(which){
+    const n = names();
+    const v = $("wishInput").value.trim();
+    if(!v) return toast("先輸入一個願望");
+    if(which==="A"){
+      s.wishesA = s.wishesA || [];
+      s.wishesA.unshift(v);
+      toast(`加入${n.A}願望池`);
+    }else{
+      s.wishesB = s.wishesB || [];
+      s.wishesB.unshift(v);
+      toast(`加入${n.B}願望池`);
+    }
+    $("wishInput").value = "";
+    save(); render();
+  }
+  $("addToA").onclick = ()=> addWish("A");
+  $("addToB").onclick = ()=> addWish("B");
+
+  $("resetToday").onclick = ()=>{
+    s.scoreA = 0; s.scoreB = 0;
+    s.lastMagic = ""; s.lastShare = "";
+    save(); render(); toast("點數已重設");
+  };
+  $("clearWishes").onclick = ()=>{
+    s.wishesA = []; s.wishesB = [];
+    save(); render(); toast("願望池已清空");
+  };
+
+  bindDelete();
+  render();
+
+  window.addEventListener("error", ()=>{
+    if(window.__hm_err) return;
+    window.__hm_err = true;
+    toast("⚠️ 小錯誤，請重新整理");
+  });
+})();
 </script>
 </body>
 </html>
