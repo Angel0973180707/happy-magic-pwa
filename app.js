@@ -1,32 +1,45 @@
-const cards=[
-"對家人說一句謝謝",
-"幫忙一個小整理",
-"給一個抱抱或拍拍",
-"用笑臉回應一次"
+const magicDefault=[
+"說一句甜心話",
+"給一個擁抱",
+"分享一件心事",
+"幫忙一個歸位",
+"講一個笑話"
 ];
 
-const KEY="happy-v3";
-let s=JSON.parse(localStorage.getItem(KEY)||"{\"p\":0,\"c\":0}");
+let s=JSON.parse(localStorage.getItem("hm-full")||'{"mode":"parent","a":0,"b":0,"wishes":[]}');
+const $=id=>document.getElementById(id);
 
-const p=document.getElementById("p");
-const c=document.getElementById("c");
-const card=document.getElementById("card");
-const toast=document.getElementById("toast");
+function save(){localStorage.setItem("hm-full",JSON.stringify(s))}
+function toast(t){const el=$("toast");el.textContent=t;el.style.display="block";setTimeout(()=>el.style.display="none",1200)}
 
-function save(){localStorage.setItem(KEY,JSON.stringify(s))}
-function show(msg){
- toast.textContent=msg;
- toast.style.display="block";
- setTimeout(()=>toast.style.display="none",1200);
+function render(){
+ $("aScore").textContent=s.a;
+ $("bScore").textContent=s.b;
+ $("aLabel").textContent=s.mode==="parent"?"大人":"哥哥";
+ $("bLabel").textContent=s.mode==="parent"?"寶貝":"妹妹";
+ $("wishList").innerHTML=s.wishes.map(w=>`<div>${w}</div>`).join("");
 }
-function render(){p.textContent=s.p;c.textContent=s.c}
 render();
 
-draw.onclick=()=>{
- card.textContent=cards[Math.floor(Math.random()*cards.length)];
- show("抽好了！");
+$("modeParent").onclick=()=>{s.mode="parent";save();render();toast("親子模式")}
+$("modeSibling").onclick=()=>{s.mode="sibling";save();render();toast("兄弟姊妹模式")}
+
+$("drawMagic").onclick=()=>{
+ const pool=[...magicDefault,...s.wishes];
+ const pick=pool[Math.floor(Math.random()*pool.length)];
+ $("magicText").textContent=pick;
+ s.a++; save(); render(); toast("魔法成立 ✨");
 }
 
-childGood.onclick=()=>{s.p++;save();render();show("家長 +1")}
-parentGood.onclick=()=>{s.c++;save();render();show("孩子 +1")}
-reset.onclick=()=>{s={p:0,c:0};save();render();show("明天再來")}
+$("shareHappy").onclick=()=>{
+ $("shareText").textContent="已分享一件快樂 💛";
+ s.b++; save(); render(); toast("貼心吸過來 +1");
+}
+
+$("addWish").onclick=()=>{
+ const v=$("wishInput").value.trim();
+ if(!v)return;
+ s.wishes.push(v);
+ $("wishInput").value="";
+ save(); render(); toast("願望加入 ✨");
+}

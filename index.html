@@ -3,43 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#FF8A00">
+<meta name="theme-color" content="#FF7A00">
 <title>幸福魔法師</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="styles.css">
+<style>
+:root{
+ --orange:#FF7A00;
+ --yellow:#FFD54F;
+ --pink:#FF8FAB;
+ --blue:#6EC6FF;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:sans-serif;
+ background:linear-gradient(180deg,var(--yellow),var(--orange));
+ color:#4A2300;
+}
+header{
+ padding:16px;text-align:center;
+ font-weight:900;font-size:20px;
+ background:var(--orange);color:white;
+}
+.mode-switch{
+ display:flex;gap:10px;padding:12px;
+}
+.mode-switch button{
+ flex:1;padding:14px;border:0;border-radius:14px;
+ font-weight:900;background:white;color:#FF7A00;
+}
+.mode-switch button.active{
+ background:var(--pink);color:white;
+}
+main{padding:14px}
+.card{
+ background:white;border-radius:20px;
+ padding:16px;margin-bottom:16px;
+ box-shadow:0 10px 22px rgba(0,0,0,.15);
+}
+h2{margin:0 0 10px;font-size:16px}
+button.big{
+ width:100%;padding:18px;margin-top:12px;
+ font-size:17px;font-weight:900;
+ border:0;border-radius:16px;
+ background:var(--orange);color:white;
+}
+button.alt{background:var(--blue)}
+.list{margin-top:10px}
+.list div{
+ background:#FFF3E0;padding:10px;
+ border-radius:12px;margin-bottom:6px;
+ font-weight:700;
+}
+.score{
+ display:flex;justify-content:space-around;
+ font-size:20px;font-weight:900;
+}
+input{
+ width:100%;padding:14px;
+ border-radius:14px;border:2px dashed var(--orange);
+ font-size:16px;
+}
+.links a{
+ display:block;text-decoration:none;
+ text-align:center;padding:14px;margin-top:10px;
+ border-radius:14px;background:var(--yellow);
+ font-weight:900;color:#4A2300;
+}
+#toast{
+ position:fixed;bottom:20px;left:50%;
+ transform:translateX(-50%);
+ background:#4A2300;color:white;
+ padding:10px 16px;border-radius:999px;
+ display:none;font-weight:900;
+}
+</style>
 </head>
 <body>
 <header>幸福魔法師</header>
 
+<div class="mode-switch">
+ <button id="modeParent" class="active">👨‍👩‍👧 親子模式</button>
+ <button id="modeSibling">👧🧒 兄弟姊妹模式</button>
+</div>
+
 <main>
-<section class="step">
-<h2>① 抽一個好行動</h2>
-<button id="draw">🎲 抽一張</button>
-<div id="card"></div>
-</section>
 
-<section class="step">
-<h2>② 誰做得好？</h2>
-<button id="childGood">孩子做得好 ➜ 家長 +1</button>
-<button id="parentGood">家長做得好 ➜ 孩子 +1</button>
-</section>
+<div class="card">
+<h2>🪄 幸福魔法師</h2>
+<button class="big" id="drawMagic">抽一件自動完成的事</button>
+<div id="magicText"></div>
+</div>
 
-<section class="step score">
-<div>👨 家長：<span id="p">0</span></div>
-<div>🧒 孩子：<span id="c">0</span></div>
-</section>
+<div class="card">
+<h2>🧲 幸福貼心磁鐵</h2>
+<button class="big" id="shareHappy">分享一件快樂</button>
+<div id="shareText"></div>
+</div>
 
-<section class="step">
-<h2>③ 今天結束</h2>
-<button id="reset">🧹 明天再來</button>
-</section>
+<div class="card">
+<h2>⭐ 點數</h2>
+<div class="score">
+ <div id="aLabel">大人 <span id="aScore">0</span></div>
+ <div id="bLabel">寶貝 <span id="bScore">0</span></div>
+</div>
+</div>
 
-<section class="links">
-<a href="https://forms.gle/vYMsw6bgiJYn32Gk9" target="_blank">📝 回饋</a>
+<div class="card">
+<h2>📋 願望清單（一起討論填）</h2>
+<input id="wishInput" placeholder="輸入一個希望對方『自動』做到的事">
+<button class="big alt" id="addWish">加入願望池</button>
+<div class="list" id="wishList"></div>
+</div>
+
+<div class="links">
+<a href="https://forms.gle/vYMsw6bgiJYn32Gk9" target="_blank">📝 回饋表單</a>
 <a href="https://angel0973180707.github.io/angel-happy-paw/" target="_blank">🏠 概念館</a>
-<a href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7" target="_blank">▶️ 頻道</a>
-</section>
+<a href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7" target="_blank">▶️ 天使笑長頻道</a>
+</div>
+
 </main>
 
 <div id="toast"></div>
