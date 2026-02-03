@@ -1,126 +1,230 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#FF7A00">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#FF7A00" />
 <title>幸福魔法師</title>
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
 <style>
 :root{
- --orange:#FF7A00;
- --yellow:#FFD54F;
- --pink:#FF8FAB;
- --blue:#6EC6FF;
+  --o:#FF7A00;
+  --y:#FFD54F;
+  --p:#FF5FA2;
+  --b:#4DB6FF;
+  --g:#34D399;
+  --bg1:#FFF0C2;
+  --bg2:#FF7A00;
 }
 *{box-sizing:border-box}
 body{
- margin:0;font-family:sans-serif;
- background:linear-gradient(180deg,var(--yellow),var(--orange));
- color:#4A2300;
+  margin:0;
+  font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif;
+  background: linear-gradient(180deg,var(--bg1),var(--bg2));
+  color:#3A1C00;
 }
 header{
- padding:16px;text-align:center;
- font-weight:900;font-size:20px;
- background:var(--orange);color:white;
+  position:sticky; top:0; z-index:5;
+  padding:16px 14px;
+  text-align:center;
+  font-weight:900;
+  font-size:20px;
+  background:var(--o);
+  color:white;
+  box-shadow: 0 10px 18px rgba(0,0,0,.18);
 }
-.mode-switch{
- display:flex;gap:10px;padding:12px;
-}
-.mode-switch button{
- flex:1;padding:14px;border:0;border-radius:14px;
- font-weight:900;background:white;color:#FF7A00;
-}
-.mode-switch button.active{
- background:var(--pink);color:white;
-}
-main{padding:14px}
+main{padding:14px; padding-bottom:90px}
 .card{
- background:white;border-radius:20px;
- padding:16px;margin-bottom:16px;
- box-shadow:0 10px 22px rgba(0,0,0,.15);
+  background:#fff;
+  border-radius:22px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
 }
-h2{margin:0 0 10px;font-size:16px}
-button.big{
- width:100%;padding:18px;margin-top:12px;
- font-size:17px;font-weight:900;
- border:0;border-radius:16px;
- background:var(--orange);color:white;
+.row{display:flex; gap:10px; align-items:center}
+.row > *{flex:1}
+h2{margin:0 0 10px; font-size:16px}
+.small{font-size:13px; opacity:.9; margin-top:6px}
+.bigbtn{
+  width:100%;
+  padding:16px 14px;
+  border:0;
+  border-radius:16px;
+  font-weight:900;
+  font-size:16px;
+  background:var(--o);
+  color:#fff;
 }
-button.alt{background:var(--blue)}
+.bigbtn:active{transform:scale(.98)}
+.bigbtn.blue{background:var(--b)}
+.bigbtn.pink{background:var(--p)}
+.bigbtn.green{background:var(--g)}
+.pill{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:2px dashed rgba(255,122,0,.6);
+  font-weight:800;
+  background:#fffaf0;
+}
+.kv{
+  display:flex; justify-content:space-around;
+  font-weight:900; font-size:18px;
+}
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#FFF3E0;
+  font-weight:900;
+}
+.box{
+  margin-top:10px;
+  background:#FFF3E0;
+  padding:12px;
+  border-radius:14px;
+  font-weight:900;
+}
 .list{margin-top:10px}
-.list div{
- background:#FFF3E0;padding:10px;
- border-radius:12px;margin-bottom:6px;
- font-weight:700;
+.item{
+  display:flex; gap:8px; align-items:center;
+  background:#FFF3E0;
+  padding:10px 10px;
+  border-radius:14px;
+  margin-bottom:8px;
 }
-.score{
- display:flex;justify-content:space-around;
- font-size:20px;font-weight:900;
+.item .t{flex:1; font-weight:800}
+.item button{
+  border:0;
+  background:#3A1C00;
+  color:#fff;
+  font-weight:900;
+  border-radius:12px;
+  padding:8px 10px;
 }
-input{
- width:100%;padding:14px;
- border-radius:14px;border:2px dashed var(--orange);
- font-size:16px;
+.tabs{
+  display:flex; gap:10px;
 }
+.tab{
+  flex:1;
+  padding:12px;
+  border-radius:14px;
+  border:0;
+  font-weight:900;
+  background:#fff;
+  color:var(--o);
+}
+.tab.active{background:var(--p); color:#fff}
 .links a{
- display:block;text-decoration:none;
- text-align:center;padding:14px;margin-top:10px;
- border-radius:14px;background:var(--yellow);
- font-weight:900;color:#4A2300;
+  display:block;
+  text-decoration:none;
+  text-align:center;
+  padding:14px;
+  border-radius:16px;
+  background:var(--y);
+  font-weight:900;
+  color:#3A1C00;
+  margin-top:10px;
 }
 #toast{
- position:fixed;bottom:20px;left:50%;
- transform:translateX(-50%);
- background:#4A2300;color:white;
- padding:10px 16px;border-radius:999px;
- display:none;font-weight:900;
+  position:fixed;
+  bottom:22px; left:50%;
+  transform:translateX(-50%);
+  background:#3A1C00;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:999px;
+  font-weight:900;
+  display:none;
+  max-width: calc(100vw - 32px);
+  text-align:center;
 }
 </style>
 </head>
 <body>
 <header>幸福魔法師</header>
 
-<div class="mode-switch">
- <button id="modeParent" class="active">👨‍👩‍👧 親子模式</button>
- <button id="modeSibling">👧🧒 兄弟姊妹模式</button>
-</div>
-
 <main>
+  <!-- Mode -->
+  <section class="card">
+    <h2>模式</h2>
+    <div class="tabs">
+      <button id="modeParent" class="tab active">👨‍👩‍👧 親子</button>
+      <button id="modeSibling" class="tab">👧🧒 兄弟姊妹</button>
+    </div>
+    <div class="small">切換後，稱呼會變；點數與願望池都會保留。</div>
+  </section>
 
-<div class="card">
-<h2>🪄 幸福魔法師</h2>
-<button class="big" id="drawMagic">抽一件自動完成的事</button>
-<div id="magicText"></div>
-</div>
+  <!-- Score -->
+  <section class="card">
+    <h2>點數</h2>
+    <div class="kv">
+      <div><span id="aName" class="badge">大人</span>：<span id="aScore">0</span></div>
+      <div><span id="bName" class="badge">寶貝</span>：<span id="bScore">0</span></div>
+    </div>
+    <div class="small">規則：寶貝做得好 ➜ 大人 +1；大人做得好 ➜ 寶貝 +1。</div>
+  </section>
 
-<div class="card">
-<h2>🧲 幸福貼心磁鐵</h2>
-<button class="big" id="shareHappy">分享一件快樂</button>
-<div id="shareText"></div>
-</div>
+  <!-- Magic -->
+  <section class="card">
+    <h2>🪄 幸福魔法師</h2>
+    <div class="row">
+      <button id="drawForB" class="bigbtn">抽給 <span id="bName2">寶貝</span></button>
+      <button id="drawForA" class="bigbtn blue">抽給 <span id="aName2">大人</span></button>
+    </div>
+    <div id="magicResult" class="box">按上面任一顆，抽一件「讓對方自動完成」的事。</div>
 
-<div class="card">
-<h2>⭐ 點數</h2>
-<div class="score">
- <div id="aLabel">大人 <span id="aScore">0</span></div>
- <div id="bLabel">寶貝 <span id="bScore">0</span></div>
-</div>
-</div>
+    <div class="row" style="margin-top:10px">
+      <button id="bDid" class="bigbtn green"><span id="bName3">寶貝</span>自動完成 ➜ <span id="aName3">大人</span> +1</button>
+      <button id="aDid" class="bigbtn pink"><span id="aName4">大人</span>自動完成 ➜ <span id="bName4">寶貝</span> +1</button>
+    </div>
+    <div class="small">小訣竅：抽到不想做，就笑一笑再抽一次（不算失敗）。</div>
+  </section>
 
-<div class="card">
-<h2>📋 願望清單（一起討論填）</h2>
-<input id="wishInput" placeholder="輸入一個希望對方『自動』做到的事">
-<button class="big alt" id="addWish">加入願望池</button>
-<div class="list" id="wishList"></div>
-</div>
+  <!-- Magnet -->
+  <section class="card">
+    <h2>🧲 幸福貼心磁鐵</h2>
+    <input id="shareInput" class="pill" placeholder="寫下『今天把快樂吸過來的一件事』（可不填）" />
+    <div class="row" style="margin-top:10px">
+      <button id="shareB" class="bigbtn"><span id="bName5">寶貝</span>分享 ➜ <span id="aName5">大人</span> +1</button>
+      <button id="shareA" class="bigbtn blue"><span id="aName6">大人</span>分享 ➜ <span id="bName6">寶貝</span> +1</button>
+    </div>
+    <div id="lastShare" class="box">今天先一件一點，就很好。</div>
+  </section>
 
-<div class="links">
-<a href="https://forms.gle/vYMsw6bgiJYn32Gk9" target="_blank">📝 回饋表單</a>
-<a href="https://angel0973180707.github.io/angel-happy-paw/" target="_blank">🏠 概念館</a>
-<a href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7" target="_blank">▶️ 天使笑長頻道</a>
-</div>
+  <!-- Wish Pools -->
+  <section class="card">
+    <h2>📋 願望池（分開）</h2>
+    <div class="small">一起討論、一起寫，但分成兩個池：<br>
+      <b><span id="aName7">大人</span>願望池</b>＝希望 <span id="bName7">寶貝</span>「自動」做到；
+      <b><span id="bName8">寶貝</span>願望池</b>＝希望 <span id="aName8">大人</span>「自動」做到。
+    </div>
 
+    <input id="wishInput" class="pill" placeholder="輸入一個『自動』願望（例如：自動吃青菜/溫柔說話）" />
+    <div class="row" style="margin-top:10px">
+      <button id="addToA" class="bigbtn">加入 <span id="aName9">大人</span>願望池</button>
+      <button id="addToB" class="bigbtn blue">加入 <span id="bName9">寶貝</span>願望池</button>
+    </div>
+
+    <div class="row" style="margin-top:12px">
+      <div>
+        <div class="badge">🧺 <span id="aName10">大人</span>願望池</div>
+        <div id="listA" class="list"></div>
+      </div>
+      <div>
+        <div class="badge">🎈 <span id="bName10">寶貝</span>願望池</div>
+        <div id="listB" class="list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Links -->
+  <section class="card links">
+    <a href="https://forms.gle/vYMsw6bgiJYn32Gk9" target="_blank" rel="noopener">📝 回饋表單</a>
+    <a href="https://angel0973180707.github.io/angel-happy-paw/" target="_blank" rel="noopener">🏠 一鍵回概念館</a>
+    <a href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7" target="_blank" rel="noopener">▶️ 天使笑長頻道</a>
+  </section>
 </main>
 
 <div id="toast"></div>
