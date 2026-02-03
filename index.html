@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#8FB9A8" />
+  <meta name="description" content="幸福魔法師｜親子同樂：貼心×幽默×感恩，把日常小事變成幸福的正向循環。" />
+  <title>幸福魔法師</title>
+
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand__icon" src="./icons/icon-192.png" alt="幸福魔法師 icon" />
+      <div class="brand__text">
+        <div class="brand__title">幸福魔法師</div>
+        <div class="brand__subtitle">親子同樂｜貼心吸引幸福｜小仙女魔法</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card hero">
+      <h1>今天，我們一起用「小小魔法」讓幸福靠近</h1>
+      <p class="muted">
+        不是考核、不是說教。只是把日常的貼心、幽默、感恩，變成彼此都看得見的「幸福流動」。
+      </p>
+      <div class="pill-row">
+        <span class="pill">貼心</span>
+        <span class="pill">歡喜心</span>
+        <span class="pill">感恩</span>
+        <span class="pill">正向循環</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <section class="card">
+        <h2>魔法一｜幸福吸引力</h2>
+        <p class="muted">孩子的貼心，吸引幸福回頭看。大人的「及時善意回應」，讓善循環啟動。</p>
+        <button class="btn" id="btn-attraction">抽一句「貼心回應」</button>
+        <div class="quote" id="quote-attraction" aria-live="polite"></div>
+      </section>
+
+      <section class="card">
+        <h2>魔法二｜和樂融融</h2>
+        <p class="muted">把指令變魔法：少一點碎念，多一點笑。孩子更願意配合，家更像家。</p>
+        <button class="btn" id="btn-harmony">抽一句「小仙女咒語」</button>
+        <div class="quote" id="quote-harmony" aria-live="polite"></div>
+      </section>
+    </section>
+
+    <section class="card">
+      <h2>親子同樂｜互相得分（概念版）</h2>
+      <p class="muted">
+        「孩子好表現 → 家長得分；家長好表現 → 孩子得分」先做成最保守、最好用的記錄：
+        每天只要各按一次就好。不是比高低，是把好看見。
+      </p>
+
+      <div class="score-wrap">
+        <div class="score-card">
+          <div class="score-title">家長得分</div>
+          <div class="score-num" id="score-parent">0</div>
+          <button class="btn btn--soft" id="add-parent">＋孩子好表現（家長加分）</button>
+        </div>
+
+        <div class="score-card">
+          <div class="score-title">孩子得分</div>
+          <div class="score-num" id="score-child">0</div>
+          <button class="btn btn--soft" id="add-child">＋家長好表現（孩子加分）</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn--ghost" id="reset-today">重設今日</button>
+        <button class="btn btn--ghost" id="copy-summary">複製今日一句話</button>
+      </div>
+
+      <div class="hint" id="summary" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>支持入口</h2>
+      <p class="muted">固定三個入口：回饋表單／一鍵回概念館／天使笑長頻道（開新分頁，不離開工具）。</p>
+
+      <div class="link-list">
+        <a class="link-btn" target="_blank" rel="noopener"
+           href="https://forms.gle/vYMsw6bgiJYn32Gk9">📝 回饋表單（親子同樂）</a>
+
+        <a class="link-btn link-btn--warm" target="_blank" rel="noopener"
+           href="https://angel0973180707.github.io/angel-happy-paw/">🏠 一鍵回概念館</a>
+
+        <a class="link-btn link-btn--pink" target="_blank" rel="noopener"
+           href="https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7">▶️ 天使笑長頻道</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="muted small">© 幸福魔法師｜Angel Style</div>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
